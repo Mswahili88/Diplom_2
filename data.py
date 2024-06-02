@@ -23,7 +23,9 @@ class TestDataBody:
     user_auth_no_email_401_body = {"success": False, "message": "email or password are incorrect"}
     user_patch_the_same_email_403_body = {"success": False, "message": "User with such email already exists"}
     user_patch_data_non_auth_401_body = {"success": False, "message": "You should be authorised"}
+    user_patch_data_with_existing_email_403_body = {"success": False,"message": "User with such email already exists"}
     order_non_ingredients_400_body = {"success": False, "message": "Ingredient ids must be provided"}
     get_non_auth_user_order_401_body = {"success": False, "message": "You should be authorised"}
+
 
 

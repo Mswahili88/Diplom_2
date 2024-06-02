@@ -34,3 +34,21 @@ def patch_data():
     token = response.json()["accessToken"]
     requests.delete(urls.URL_BASE + urls.URL_DELETE_USER, data=TestDataBody.BODY_WITH_CHANGED_DATA,
                     headers={"Authorization": token})
+
+@pytest.fixture(scope='function')
+def two_default_users():
+    payload_one = helper.TestMethodsHelper.create_random_login_password()
+    response_one = requests.post(urls.URL_BASE + urls.URL_REG_USER, data=payload_one)
+    payload_two = helper.TestMethodsHelper.create_random_login_password()
+    response_two = requests.post(urls.URL_BASE + urls.URL_REG_USER, data=payload_two)
+    token_two = response_two.json()["accessToken"]
+    data = [payload_one, token_two]
+    yield data
+    token_one = response_one.json()["accessToken"]
+    requests.delete(urls.URL_BASE + urls.URL_DELETE_USER, data=payload_one,
+                    headers={"Authorization": token_one})
+    requests.delete(urls.URL_BASE + urls.URL_DELETE_USER, data=payload_two,
+                    headers={"Authorization": token_two})
+
+
+
