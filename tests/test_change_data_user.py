@@ -16,7 +16,8 @@ class TestChangeDataUser:
 
     @allure.title('Проверка невозможности изменения данных неавторизованным пользователем')
     @allure.description('Проверяем, что неавторизованный пользователь не может поменять свои регистрационные данные')
-    def test_change_data_non_auth(self, patch_data):
+    def test_change_data_non_auth(self, payload_data_new):
+        requests.post(urls.URL_BASE + urls.URL_REG_USER, data=payload_data_new)
         change = requests.patch(urls.URL_BASE + urls.URL_CHANGE_DATA, data=TestDataBody.BODY_WITH_CHANGED_DATA)
         assert change.status_code == 401 and change.json() == TestDataBody.user_patch_data_non_auth_401_body
 

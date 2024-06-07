@@ -8,8 +8,9 @@ class TestLogin:
 
     @allure.title('Успешная авторизация зарегистрированного пользователя')
     @allure.description('Проверяем, что зарегистрированный пользователь успешно проходит авторизацию')
-    def test_auth_user(self, payload_data):
-        response = requests.post(urls.URL_BASE + urls.URL_AUTH, data=payload_data)
+    def test_auth_user(self, payload_data_new):
+        requests.post(urls.URL_BASE + urls.URL_REG_USER, data=payload_data_new)
+        response = requests.post(urls.URL_BASE + urls.URL_AUTH, data=payload_data_new)
         assert response.status_code == 200 and TestDataBody.body_keys in TestDataBody.BODY_OK_REGISTRATION_AUTH
 
     @allure.title('Неуспешная авторизация пользователя с отсутствующим обязательным к заполнению полем')

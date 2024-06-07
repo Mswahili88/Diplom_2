@@ -2,6 +2,7 @@ import random
 import string
 import allure
 
+
 class TestMethodsHelper:
     @staticmethod
     @allure.step('Создание рандомных регистрационных данных')
