@@ -31,16 +31,16 @@ jobs:
         run: pip install -r requirements.txt
       - name: first_test
         if: "github.event.inputs.deployment_target == 'first_test'"
-        run: pytest tests\test_change_data_user.py
+        run: pytest tests/test_change_data_user.py
       - name: second_test
         if: "github.event.inputs.deployment_target == 'second_test'"
-        run: pytest tests\test_create_user.py
+        run: pytest tests/test_create_user.py
       - name: third_test
         if: "github.event.inputs.deployment_target == 'third_test'"
-        run: pytest tests\test_get_order.py
+        run: pytest tests/test_get_order.py
       - name: fourth_test
         if: "github.event.inputs.deployment_target == 'fourth_test'"
-        run: pytest tests\test_login.py
+        run: pytest tests/test_login.py
       - name: fifth_test
         if: "github.event.inputs.deployment_target == 'fifth_test'"
-        run: pytest tests\test_make_order.py
+        run: pytest tests/test_make_order.py
