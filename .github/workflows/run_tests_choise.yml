@@ -1,0 +1,46 @@
+name: Automated tests by choise
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+          type: choice
+          options:
+            - first_test
+            - second_test
+            - third_test
+            - fourth_test
+            - fifth_test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+      - name: install dependencies
+        run: pip install -r requirements.txt
+      - name: first_test
+        if: "github.event.inputs.deployment_target == 'first_test'"
+        run: pytest tests\test_change_data_user.py
+      - name: second_test
+        if: "github.event.inputs.deployment_target == 'second_test'"
+        run: pytest tests\test_create_user.py
+      - name: third_test
+        if: "github.event.inputs.deployment_target == 'third_test'"
+        run: pytest tests\test_get_order.py
+      - name: fourth_test
+        if: "github.event.inputs.deployment_target == 'fourth_test'"
+        run: pytest tests\test_login.py
+      - name: fifth_test
+        if: "github.event.inputs.deployment_target == 'fifth_test'"
+        run: pytest tests\test_make_order.py
