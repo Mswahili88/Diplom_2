@@ -1,6 +1,6 @@
-#name: Automated tests
+name: Automated tests
 
-#on:
+on:
   push
 
 jobs:

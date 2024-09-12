@@ -7,13 +7,13 @@ on:
         description: Choose target
         required: true
         default:
-          type: choice
-          options:
-            - first_test
-            - second_test
-            - third_test
-            - fourth_test
-            - fifth_test
+        type: choice
+        options:
+          - first_test
+          - second_test
+          - third_test
+          - fourth_test
+          - fifth_test
 
 jobs:
   test:
