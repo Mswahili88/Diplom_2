@@ -17,6 +17,7 @@ class TestGetOrder:
                       data=TestDataBody.space_burger)
         total = requests.get(urls.URL_BASE + urls.URL_GET_ORDER_USER, headers={'Authorization': token})
         assert total.status_code == 200 and len(total.json()["orders"]) == 2
+        print(total.json()['orders'])
 
     @allure.title('Проверка получения заказов неавторизованным пользователем')
     @allure.description('Проверяем,что неавторизованный пользователь не сможет получить список заказов')
@@ -24,4 +25,5 @@ class TestGetOrder:
         requests.post(urls.URL_BASE + urls.URL_REG_USER, data=payload_data_new)
         total = requests.get(urls.URL_BASE + urls.URL_GET_ORDER_USER)
         assert total.status_code == 401 and total.json() == TestDataBody.get_non_auth_user_order_401_body
+        print(total.json())
 
