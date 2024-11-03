@@ -1,0 +1,22 @@
+name: Automated tests on schedule
+
+on:
+  schedule:
+    - cron: "55 9 * * *"
+
+jobs:
+  test:
+    runs-on: ubuntu_latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+      - name: install dependencies
+        run: pip install -r requirements.txt
+      - name: test_on_schedule
+        run: pytest
