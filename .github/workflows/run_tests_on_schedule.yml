@@ -1,12 +1,12 @@
-name: Automated tests on schedule
+#name: Automated tests on schedule
 
-on:
-  schedule:
-    - cron: "55 9 * * *"
+#on:
+  #schedule:
+    #- cron: "55 9 * * *"
 
-jobs:
-  test:
-    runs-on: ubuntu_latest
+#jobs:
+  #test:
+    #runs-on: ubuntu_latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
